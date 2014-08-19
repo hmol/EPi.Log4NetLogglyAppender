@@ -22,7 +22,6 @@ After installing the NuGet package, you will need to register the appender in yo
         <appender-ref ref="loggly"/>
     </root>
 </log4net>
-
 ```
 
-That's it. It should transmit everything you log using log4net to your Loggly.com feed.
+That's it. Your application should now transmit everything you log using log4net to your Loggly.com feed.
