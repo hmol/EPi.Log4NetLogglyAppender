@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Geta.Log4NetLogglyAppender</id>
+    <version>0.1.0</version>
+    <title>Log4net Loggly Appender</title>
+    <authors>Geta AS</authors>
+    <owners>Geta AS</owners>
+    <projectUrl>https://github.com/Geta/log4net-loggly-appender</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Log4net appender for Loggly</description>
+    <releaseNotes></releaseNotes>
+    <copyright>Copyright 2014</copyright>
+    <tags>log4net, loggly</tags>
+    <dependencies>
+      <dependency id="log4net" version="1.2.10" />
+      <dependency id="Newtonsoft.Json" version="4.0.1" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="bin\Release\Log4NetLogglyAppender.dll" target="lib\Log4NetLogglyAppender.dll" />
+  </files>
+</package>
