@@ -23,10 +23,16 @@ namespace Log4NetLogglyAppender
             set
             {
                 _endpoint = value;
+
                 if (!_endpoint.EndsWith("/"))
+                {
                     _endpoint += "/";
+                }
+
                 if (!_endpoint.EndsWith("inputs/"))
+                {
                     _endpoint += "inputs/";
+                }
             }
         }
 
@@ -38,11 +44,14 @@ namespace Log4NetLogglyAppender
 
         /// <summary>
         /// Comma-delimited list of tags to add to each log event.
-        /// Relevant only for Loggly API generation 2+
+        /// Relevant only for Loggly API generation 2.x upwards.
         /// https://www.loggly.com/docs/tags/
         /// </summary>
         public string Tags { get; set; }
 
+        /// <summary>
+        /// Parameter-less constructor required by log4net.
+        /// </summary>
         public Appender() { }
 
         /// <summary>
@@ -58,7 +67,7 @@ namespace Log4NetLogglyAppender
         }
 
         /// <summary>
-        /// Appender itself
+        /// The appender itself.
         /// </summary>
         /// <param name="loggingEvent">The internal representation of logging events.</param>
         protected override void Append(LoggingEvent loggingEvent)
