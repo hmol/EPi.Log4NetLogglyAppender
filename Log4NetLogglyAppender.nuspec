@@ -3,21 +3,23 @@
   <metadata>
     <id>Geta.Log4netLogglyAppender</id>
     <version>0.1.0</version>
-    <title>Log4net (1.2.10) Loggly.com Appender</title>
+    <title>Log4net Loggly.com Appender</title>
     <authors>Geta AS</authors>
     <owners>Geta AS</owners>
     <projectUrl>https://github.com/Geta/log4net-loggly-appender</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Loggly.com appender for log4net 1.2.10</description>
+    <description>Log4net Loggly.com appender for EPiServer CMS</description>
     <releaseNotes></releaseNotes>
-    <copyright>Copyright 2014</copyright>
+    <copyright>Copyright © 2014 Geta AS</copyright>
     <tags>log4net, loggly</tags>
     <dependencies>
       <dependency id="log4net" version="[1.2.10]" />
       <dependency id="Newtonsoft.Json" version="4.0.1" />
+      <dependency id="Microsoft.Net.Http" version="2.0.20505.0" />
     </dependencies>
   </metadata>
   <files>
     <file src="bin\Release\Log4NetLogglyAppender.dll" target="lib\net40\Log4NetLogglyAppender.dll" />
+    <file src="EPiServerLog.config.transform" target="content\EPiServerLog.config.transform" />
   </files>
 </package>

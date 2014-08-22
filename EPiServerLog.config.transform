@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<log4net>
+  <appender name="loggly" type="Log4NetLogglyAppender.Appender, Log4NetLogglyAppender">
+    <endpoint value="REPLACE-THIS-WITH-YOUR-LOGGLY-ENDPOINT" />
+    <token value="REPLACE-THIS-WITH-YOUR-LOGGLY-TOKEN" />
+    <!-- Disable tags if running on 1st generation API -->
+    <tags>tag1,tag2</tags>
+  </appender>
+
+  <root>
+    <appender-ref ref="loggly" />
+  </root>
+</log4net>
