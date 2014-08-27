@@ -7,7 +7,7 @@ using log4net.Appender;
 using log4net.Core;
 using Newtonsoft.Json;
 
-namespace Log4NetLogglyAppender
+namespace EPi.Log4NetLogglyAppender
 {
     public class Appender : AppenderSkeleton
     {

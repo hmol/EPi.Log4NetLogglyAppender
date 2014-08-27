@@ -7,8 +7,8 @@
     <ProjectGuid>{B228EA02-E3AF-48DE-AAD8-DAC27158FE20}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Log4NetLogglyAppender</RootNamespace>
-    <AssemblyName>Log4NetLogglyAppender</AssemblyName>
+    <RootNamespace>EPi.Log4NetLogglyAppender</RootNamespace>
+    <AssemblyName>EPi.Log4NetLogglyAppender</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
