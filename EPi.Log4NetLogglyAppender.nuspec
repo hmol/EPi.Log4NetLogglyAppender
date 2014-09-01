@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>EPi.Log4NetLogglyAppender</id>
-    <version>0.1.0</version>
+    <version>1.0.0</version>
     <title>Log4net Loggly.com Appender</title>
     <authors>Geta AS</authors>
     <owners>Geta AS</owners>
