@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Dynamic;
+using System.Linq;
 using System.Net.Http;
+using EPi.Log4NetLogglyAppender.Models;
 using log4net.Appender;
 using log4net.Core;
 using Newtonsoft.Json;
@@ -72,34 +74,51 @@ namespace EPi.Log4NetLogglyAppender
         /// <param name="loggingEvent">The internal representation of logging events.</param>
         protected override void Append(LoggingEvent loggingEvent)
         {
-            dynamic payload = new ExpandoObject();
-            payload.level = loggingEvent.Level.DisplayName;
-            payload.time = loggingEvent.TimeStamp.ToString("o");
-            payload.machine = Environment.MachineName;
-            payload.process = _currentProcess.ProcessName;
-            payload.thread = loggingEvent.ThreadName;
-            payload.message = loggingEvent.RenderedMessage;
-            payload.logger = loggingEvent.LoggerName;
-
-            var exception = loggingEvent.ExceptionObject;
-            if (exception != null)
+            var p = new LogglyPayload()
             {
-                payload.exception = new ExpandoObject();
-                payload.exception.message = exception.Message;
-                payload.exception.type = exception.GetType().Name;
-                payload.exception.stackTrace = exception.StackTrace;
-                if (exception.InnerException != null)
-                {
-                    payload.exception.innerException = new ExpandoObject();
-                    payload.exception.innerException.message = exception.InnerException.Message;
-                    payload.exception.innerException.type = exception.InnerException.GetType().Name;
-                    payload.exception.innerException.stackTrace = exception.InnerException.StackTrace;
-                }
-            }
+                Level = loggingEvent.Level.DisplayName,
+                Time = loggingEvent.TimeStamp,
+                Machine = Environment.MachineName,
+                Process = _currentProcess.ProcessName,
+                Thread = loggingEvent.ThreadName,
+                Message = loggingEvent.RenderedMessage,
+                Logger = loggingEvent.LoggerName,
+                Request = new LogglyRequest(System.Web.HttpContext.Current.Request),
+                Exception = new LogglyException(loggingEvent.ExceptionObject)
+            };
+
+
+            //dynamic payload = new ExpandoObject();
+            //payload.level = loggingEvent.Level.DisplayName;
+            //payload.time = loggingEvent.TimeStamp.ToString("O");
+            //payload.machine = Environment.MachineName;
+            //payload.process = _currentProcess.ProcessName;
+            //payload.thread = loggingEvent.ThreadName;
+            //payload.message = loggingEvent.RenderedMessage;
+            //payload.logger = loggingEvent.LoggerName;
+
+            //var exception = loggingEvent.ExceptionObject;
+            //if (exception != null)
+            //{
+            //    payload.exception = new ExpandoObject();
+            //    payload.exception.message = exception.Message;
+            //    payload.exception.type = exception.GetType().Name;
+            //    payload.exception.stackTrace = exception.StackTrace;
+
+            //    if (exception.InnerException != null)
+            //    {
+            //        payload.exception.innerException = new ExpandoObject();
+            //        payload.exception.innerException.message = exception.InnerException.Message;
+            //        payload.exception.innerException.type = exception.InnerException.GetType().Name;
+            //        payload.exception.innerException.stackTrace = exception.InnerException.StackTrace;
+            //    }
+
+                
+            //}
 
             var client = new HttpClient();
             var url = string.Format("{0}{1}{2}", Endpoint, Token, string.IsNullOrWhiteSpace(Tags) ? string.Empty : "/tag/" + Tags);
-            var payloadJson = JsonConvert.SerializeObject(payload);
+            var payloadJson = JsonConvert.SerializeObject(p);
 
             client.PostAsync(url, new StringContent(payloadJson));
         }
