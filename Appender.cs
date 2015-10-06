@@ -87,35 +87,6 @@ namespace EPi.Log4NetLogglyAppender
                 Exception = new LogglyException(loggingEvent.ExceptionObject)
             };
 
-
-            //dynamic payload = new ExpandoObject();
-            //payload.level = loggingEvent.Level.DisplayName;
-            //payload.time = loggingEvent.TimeStamp.ToString("O");
-            //payload.machine = Environment.MachineName;
-            //payload.process = _currentProcess.ProcessName;
-            //payload.thread = loggingEvent.ThreadName;
-            //payload.message = loggingEvent.RenderedMessage;
-            //payload.logger = loggingEvent.LoggerName;
-
-            //var exception = loggingEvent.ExceptionObject;
-            //if (exception != null)
-            //{
-            //    payload.exception = new ExpandoObject();
-            //    payload.exception.message = exception.Message;
-            //    payload.exception.type = exception.GetType().Name;
-            //    payload.exception.stackTrace = exception.StackTrace;
-
-            //    if (exception.InnerException != null)
-            //    {
-            //        payload.exception.innerException = new ExpandoObject();
-            //        payload.exception.innerException.message = exception.InnerException.Message;
-            //        payload.exception.innerException.type = exception.InnerException.GetType().Name;
-            //        payload.exception.innerException.stackTrace = exception.InnerException.StackTrace;
-            //    }
-
-                
-            //}
-
             var client = new HttpClient();
             var url = string.Format("{0}{1}{2}", Endpoint, Token, string.IsNullOrWhiteSpace(Tags) ? string.Empty : "/tag/" + Tags);
             var payloadJson = JsonConvert.SerializeObject(p);
